@@ -54,5 +54,24 @@ class DataBase
             return $data;
         }*/
     }
+
+    function searchBookList($text){
+        $sqlQuery = "select id, name, author, edition from books where id LIKE '%$text%'
+                       or name LIKE '%$text%' or edition like '%$text%' or author like '%$text%' ";
+        $result = mysqli_query($this->con, $sqlQuery);
+        $row = mysqli_num_rows($result);
+
+        $data = []; //empty array
+
+        if($row > 0){
+            while ($rowArray = mysqli_fetch_assoc($result)){
+                $data[] = $rowArray;
+            }
+            return $data;
+        }
+        else {
+            return $data;
+        }
+    }
 }
 ?>

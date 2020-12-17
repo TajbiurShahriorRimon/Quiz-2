@@ -1,4 +1,6 @@
 <?php
+include '../controllers/booksController.php';
+include_once '../models/dataBase.php';
 ?>
 
 <html>
@@ -11,6 +13,23 @@
     </style>
 </head>
 <body>
+<input type="text" name="textSearch" onkeyup="liveSearch(this)" placeholder="search here">
+<div id="productList">
+
+</div>
+<script>
+    function liveSearch(text){
+        //alert("hello");
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("productList").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "test.php?text="+text.value, true);
+        xhttp.send();
+    }
+</script>
 <form action=""></form>
 <table align="center" border="1">
     <th>ID</th>
@@ -19,7 +38,7 @@
     <th>Edition</th>
     <th>Book Image</th>
     <?php
-    include '../controllers/booksController.php';
+
 
     if(!empty($result)) {
         //echo 'not empty';
