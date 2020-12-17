@@ -13,21 +13,46 @@ include_once '../models/dataBase.php';
     </style>
 </head>
 <body>
-<input type="text" name="textSearch" onkeyup="liveSearch(this)" placeholder="search here">
+<div id="some">
+
+</div>
+<script>
+    function something() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("some").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "test.php?text=", true);
+        xhttp.send();
+    }
+        something();
+
+</script>
+
+<input type="text" name="textSearch"  onkeyup="liveSearch(this, 2)" placeholder="search here">
 <div id="productList">
 
 </div>
 <script>
-    function liveSearch(text){
+    function liveSearch(text, signal){
         //alert("hello");
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("productList").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "test.php?text="+text.value, true);
-        xhttp.send();
+        //document.write("<?php echo 'hello wrold'?>?")
+        <?php
+            $sig = 1;
+        ?>
+        var str = text.value;
+        //if(str || 0 != str.length) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("some").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "test.php?text=" + text.value, true);
+            xhttp.send();
+        //}
     }
 </script>
 <form action=""></form>
@@ -37,10 +62,12 @@ include_once '../models/dataBase.php';
     <th>Author</th>
     <th>Edition</th>
     <th>Book Image</th>
+
     <?php
-
-
-    if(!empty($result)) {
+        include_once '../controllers/booksController.php';
+    //$sig = 1;
+    if(!empty($result) && $sig == 1) {
+        $sig = 2;
         //echo 'not empty';
         foreach ($result as $data) {
             //echo "<a href='Book_detail.php'>" . "<tr>".$data['id'] ."</tr>". "</a>";
@@ -52,13 +79,12 @@ include_once '../models/dataBase.php';
             "<td>" . "<a href='Book_detail.php?book_id=" . $data['id'] ."'>" .$data['author'].  "</a>" . "</td>".
             "<td>" . "<a href='Book_detail.php?book_id=" . $data['id'] ."'>" .$data['edition'].  "</a>" . "</td>".
 
-            //echo "<td>" . "<a href='editproduct.php?product_id=" . $data['product_id'] . "' class='btn btn-success'>Edit</a>" . "</td>";
-            //echo "<td><a href='deleteProduct.php?product_id=" . $data['product_id'] . "' class='btn btn-danger' name='." . $data['product_id'] . ".'>Delete</td>";
              "</tbody>".
                 "</td>";
         }
     }
     ?>
 </table>
+
 </body>
 </html>
