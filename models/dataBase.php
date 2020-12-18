@@ -56,7 +56,7 @@ class DataBase
     }
 
     function searchBookList($text){
-        $sqlQuery = "select id, name, author, edition from books where id LIKE '%$text%'
+        $sqlQuery = "select id, name, author, edition, bookimage from books where id LIKE '%$text%'
                        or name LIKE '%$text%' or edition like '%$text%' or author like '%$text%' ";
         $result = mysqli_query($this->con, $sqlQuery);
         $row = mysqli_num_rows($result);
