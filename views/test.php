@@ -1,10 +1,17 @@
 <?php
 include_once '../models/dataBase.php';
-$text =  $_GET['text'];
+
+$text = $_GET['text'];
+//echo $text;
 $array = new DataBase();
 $array->dbCon();
 $result = $array->searchBookList($text);
-echo "<table>";
+echo "<table border='3'>";
+    echo "<th>ID</th>
+         <th>Name</th>
+         <th>Author</th>
+         <th>Edition</th>
+         <th>Book Image</th>";
 if(!empty($result)){
     foreach ($result as $data) {
         //echo $data['name']."  ". $data['author'];
@@ -22,8 +29,7 @@ if(!empty($result)){
     }
 }
 else{
-    //echo $text;
+    echo "NO DATA FOUND";
 }
 echo "</table>";
-//echo $text;
 ?>

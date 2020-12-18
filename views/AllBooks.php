@@ -13,11 +13,12 @@ include_once '../models/dataBase.php';
     </style>
 </head>
 <body>
-<div id="some">
-
+<div align="center">
+    <input type="text" size="30" name="textSearch"  onkeyup="liveSearch(this)" placeholder="search here">
 </div>
+
 <script>
-    function something() {
+    function something2() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -26,22 +27,39 @@ include_once '../models/dataBase.php';
         };
         xhttp.open("GET", "test.php?text=", true);
         xhttp.send();
+        //alert("fef");
     }
-        something();
+    function something(text) {
+        //alert("dejwfd");
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("some").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "test.php?text="+ text.value, true);
+        xhttp.send();
+    }
+    function liveSearch(text){
+
+        something(text);
+
+    }
+        something2();
 
 </script>
 
-<input type="text" name="textSearch"  onkeyup="liveSearch(this, 2)" placeholder="search here">
 <div id="productList">
 
 </div>
+<!--
 <script>
-    function liveSearch(text, signal){
+    function liveSearch(text){
         //alert("hello");
         //document.write("<?php echo 'hello wrold'?>?")
-        <?php
-            $sig = 1;
-        ?>
+
         var str = text.value;
         //if(str || 0 != str.length) {
             var xhttp = new XMLHttpRequest();
@@ -53,8 +71,15 @@ include_once '../models/dataBase.php';
             xhttp.open("GET", "test.php?text=" + text.value, true);
             xhttp.send();
         //}
+        something()
     }
 </script>
+-->
+<br><br><br>
+<div align="center" id="some">
+
+</div>
+<!--
 <form action=""></form>
 <table align="center" border="1">
     <th>ID</th>
@@ -62,12 +87,12 @@ include_once '../models/dataBase.php';
     <th>Author</th>
     <th>Edition</th>
     <th>Book Image</th>
-
     <?php
-        include_once '../controllers/booksController.php';
+        /*include_once '../controllers/booksController.php';
+
+    echo "<div id='somes'>";
     //$sig = 1;
-    if(!empty($result) && $sig == 1) {
-        $sig = 2;
+    if(!empty($result)) {
         //echo 'not empty';
         foreach ($result as $data) {
             //echo "<a href='Book_detail.php'>" . "<tr>".$data['id'] ."</tr>". "</a>";
@@ -83,8 +108,9 @@ include_once '../models/dataBase.php';
                 "</td>";
         }
     }
+    echo "</div>";*/
     ?>
 </table>
-
+-->
 </body>
 </html>
