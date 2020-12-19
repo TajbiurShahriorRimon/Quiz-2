@@ -1,11 +1,12 @@
 <?php
-
 include_once '../models/dataBase.php';
-
 $text = $_GET['text'];
-$array = new DataBase();
+/*$array = new DataBase();
 $array->dbCon();
-$result = $array->searchBookList($text);
+$result = $array->searchBookList($text);*/
+
+include_once '../controllers/booksController.php';
+$result = showBooks($text);
 echo $text;
 echo "<table border='3'>";
     echo "<th>ID</th>

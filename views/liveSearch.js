@@ -1,6 +1,3 @@
-function liveSearchHere(){
-    alert("i am here");
-}
 
 function something(text) {
 
@@ -12,7 +9,7 @@ function something(text) {
             document.getElementById("some").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "../views/test.php?text="+ text, true);
+    xhttp.open("GET", "../views/bookList.php?text="+ text, true);
     xhttp.send();
     //alert('value: ' +text.value);
 }
@@ -31,7 +28,7 @@ function something2() {
             document.getElementById("some").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "test.php?text=", true);
+    xhttp.open("GET", "bookList.php?text=", true);
     xhttp.send();
     //alert("fef");
 }
