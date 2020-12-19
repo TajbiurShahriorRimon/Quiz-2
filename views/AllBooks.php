@@ -12,44 +12,15 @@ include_once '../models/dataBase.php';
         }
     </style>
 </head>
-<body>
+<body onload="something2()">
 <div align="center">
-    <input type="text" size="30" name="textSearch"  onkeyup="liveSearch(this)" placeholder="search here">
+
+        <input type="text" size="30" name="textSearch" placeholder="search here" id="textSearch" onkeyup="liveSearch()">
+
 </div>
 
-<script>
-    function something2() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("some").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "test.php?text=", true);
-        xhttp.send();
-        //alert("fef");
-    }
-    function something(text) {
-        //alert("dejwfd");
-        var xhttp = new XMLHttpRequest();
 
-        xhttp.onreadystatechange = function () {
-
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("some").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "test.php?text="+ text.value, true);
-        xhttp.send();
-    }
-    function liveSearch(text){
-
-        something(text);
-
-    }
-        something2();
-
-</script>
+<script src="liveSearch.js"></script>
 
 <div id="productList">
 

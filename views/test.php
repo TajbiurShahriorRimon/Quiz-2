@@ -1,10 +1,12 @@
 <?php
+
 include_once '../models/dataBase.php';
 
 $text = $_GET['text'];
 $array = new DataBase();
 $array->dbCon();
 $result = $array->searchBookList($text);
+echo $text;
 echo "<table border='3'>";
     echo "<th>ID</th>
          <th>Name</th>
