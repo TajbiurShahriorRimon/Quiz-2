@@ -14,6 +14,11 @@ $array->dbCon();
 $result = $array->bookDetails($_GET['book_id']);
 if(!empty($result)){
     echo $result['description'];
+    echo "<br>"."<br>";
+    echo "book ID: ".$result['id']."<br>";
+    echo "book name: ".$result['name']."<br>";
+    echo "book author: ".$result['author']."<br>";
+    echo "book edition: ".$result['edition']."<br>";
 }
 ?>
 

@@ -38,7 +38,9 @@ class DataBase
     }
 
     function bookDetails($book_id){
-        $sqlQuery = "select description from bookdescription where id='$book_id'";
+        $sqlQuery = "select description, books.id, name, author, edition
+                    from bookdescription, books where bookdescription.id = books.id
+                    and desc_id = '$book_id';";
         $result = mysqli_query($this->con, $sqlQuery);
         $row = mysqli_num_rows($result);
 
